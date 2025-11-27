@@ -7,6 +7,8 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
   className?: string;
+  href?: string;
+  "aria-label"?: string;
 }
 
 export function Button({
@@ -15,6 +17,8 @@ export function Button({
   size = "md",
   onClick,
   className = "",
+  href,
+  "aria-label": ariaLabel,
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer font-medium";
   
@@ -29,14 +33,34 @@ export function Button({
     secondary: "glass-surface hover:shadow-[0_14px_48px_rgba(16,24,40,0.22)] hover:-translate-y-0.5 border-2",
     tertiary: "hover:bg-[rgba(255,255,255,0.14)] px-4",
   };
+
+  const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+  const animationProps = {
+    whileHover: { scale: 1.02 },
+    whileTap: { scale: 0.98 },
+    transition: { duration: 0.16 }
+  };
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        className={combinedClasses}
+        onClick={onClick}
+        aria-label={ariaLabel}
+        {...animationProps}
+      >
+        {children}
+      </motion.a>
+    );
+  }
   
   return (
     <motion.button
-      className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+      className={combinedClasses}
       onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ duration: 0.16 }}
+      aria-label={ariaLabel}
+      {...animationProps}
     >
       {children}
     </motion.button>
