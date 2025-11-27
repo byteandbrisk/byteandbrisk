@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 interface SectionHeaderProps {
   eyebrow?: string;
   title: string;
