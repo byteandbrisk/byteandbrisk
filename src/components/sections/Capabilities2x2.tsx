@@ -49,6 +49,15 @@ function CapabilityCard({ capability, index }: { capability: typeof capabilities
     }
 
     switch (capability.quadrant) {
+      case "Q3": // Clip-reveal (mask expand) - Simplified for all breakpoints to avoid mobile clipping issues
+        return {
+          initial: { opacity: 0, y: 20 },
+          animate: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, delay: index * 0.12, ease: [0.18, 0.9, 0.2, 1] }
+          }
+        };
       case "Q1": // Slide from left
         return {
           initial: { opacity: 0, x: -24 },
@@ -68,13 +77,13 @@ function CapabilityCard({ capability, index }: { capability: typeof capabilities
             transition: { duration: 0.42, delay: index * 0.12, ease: [0.18, 0.9, 0.2, 1] }
           }
         };
-      case "Q3": // Clip-reveal (mask expand)
+      case "Q3": // Clip-reveal (Simplified for mobile stability)
         return {
-          initial: { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+          initial: { opacity: 0, y: 24 },
           animate: {
             opacity: 1,
-            clipPath: "inset(0 0% 0 0)",
-            transition: { duration: 0.8, delay: index * 0.12, ease: [0.18, 0.9, 0.2, 1] }
+            y: 0,
+            transition: { duration: 0.5, delay: index * 0.12, ease: [0.18, 0.9, 0.2, 1] }
           }
         };
       case "Q4": // Elevation pop + icon tilt
@@ -114,7 +123,7 @@ function CapabilityCard({ capability, index }: { capability: typeof capabilities
       className="relative h-full"
     >
       <motion.div
-        className="glass-surface rounded-xl p-8 h-full flex flex-col space-y-6 cursor-pointer"
+        className="glass-surface rounded-xl p-6 md:p-8 h-full flex flex-col space-y-4 md:space-y-6 cursor-pointer"
         animate={{
           background: isHovered ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.65)",
           borderColor: isHovered ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.4)",
@@ -141,7 +150,7 @@ function CapabilityCard({ capability, index }: { capability: typeof capabilities
         </motion.div>
 
         {/* Content */}
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-2 md:space-y-3">
           <h3 style={{ fontSize: "1.25rem", lineHeight: "1.4" }}>
             {capability.title}
           </h3>

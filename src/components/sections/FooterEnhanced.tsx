@@ -34,14 +34,15 @@ export function FooterEnhanced() {
       />
       
       <div className="container-custom relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 text-center md:text-left">
+          {/* Brand Column - Full width on mobile */}
+          <div className="col-span-2 lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
+              className="flex flex-col items-center md:items-start"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-lg glass-surface flex items-center justify-center">

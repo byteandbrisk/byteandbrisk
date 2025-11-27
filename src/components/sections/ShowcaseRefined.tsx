@@ -103,7 +103,7 @@ function ShowcaseTile({ item, index }: { item: typeof showcaseItems[0]; index: n
       onHoverEnd={handleHoverEnd}
       className="relative group cursor-pointer"
     >
-      <div className="relative h-80 rounded-2xl overflow-hidden glass-surface">
+      <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden glass-surface">
         {/* Background Gradient */}
         <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient}`} />
         
@@ -208,9 +208,11 @@ export function ShowcaseRefined() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide">
           {showcaseItems.map((item, index) => (
-            <ShowcaseTile key={item.title} item={item} index={index} />
+            <div key={item.title} className="snap-center shrink-0 w-[85vw] md:w-auto">
+              <ShowcaseTile item={item} index={index} />
+            </div>
           ))}
         </div>
       </div>

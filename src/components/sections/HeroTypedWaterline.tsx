@@ -462,8 +462,8 @@ export function HeroTypedWaterline({
               </motion.div>
 
               {/* Headline with typed effect */}
-              <div className="space-y-2">
-                <h1 className="display text-[#0F172A] min-h-[2.2em]">
+              <div className="space-y-2 min-h-[120px] sm:min-h-[2.2em]">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#0F172A] leading-tight tracking-tight">
                   <div className="leading-tight">
                     <TypewriterEffect
                       text={titleTop}
@@ -490,7 +490,7 @@ export function HeroTypedWaterline({
               </div>
 
               {/* Subhead with waterline effect */}
-              <div className="relative flex justify-center min-h-[4em]">
+              <div className="relative flex justify-center min-h-[6em] sm:min-h-[4em]">
                 <WaterlineSubhead
                   text={subhead}
                   isActive={subheadActive}
